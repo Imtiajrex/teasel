@@ -91,7 +91,7 @@ export default function DetectScreen() {
 
       if (photo?.uri) {
         setCapturedImage(photo.uri);
-        detectCauliflower(photo.uri);
+        detectTeaselGuard(photo.uri);
       }
     }
   };
@@ -107,17 +107,17 @@ export default function DetectScreen() {
     if (!result.canceled && result.assets[0]) {
       const imageUri = result.assets[0].uri;
       setCapturedImage(imageUri);
-      detectCauliflower(imageUri);
+      detectTeaselGuard(imageUri);
     }
   };
 
-  const detectCauliflower = async (imageUri: string) => {
+  const detectTeaselGuard = async (imageUri: string) => {
     setIsDetecting(true);
     opacity.value = withTiming(0.7);
     rotation.value = withRepeat(withTiming(360, { duration: 2000 }), -1, false);
 
     try {
-      const result = await DetectionService.detectCauliflower(imageUri);
+      const result = await DetectionService.detectTeaselGaurd(imageUri);
       setDetectionResult(result);
     } catch (error) {
       Alert.alert(
