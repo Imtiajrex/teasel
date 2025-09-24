@@ -47,7 +47,7 @@ export default function SettingsScreen() {
     try {
       const history = await DetectionService.getHistory();
       const total = history.length;
-      const success = history.filter((h) => h.result?.isCauliflower).length;
+      const success = history.filter((h) => h.result?.isTeaselGuard).length;
       const failed = Math.max(total - success, 0);
       const successRate = total > 0 ? Math.round((success / total) * 100) : 0;
       setStats({ total, success, failed, successRate });

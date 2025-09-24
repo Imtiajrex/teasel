@@ -23,7 +23,7 @@ interface HistoryItem {
   id: string;
   imageUri: string;
   result: {
-    isCauliflower: boolean;
+    isTeaselGuard: boolean;
     confidence: number;
     timestamp: string;
   };
@@ -49,7 +49,7 @@ export default function HistoryScreen() {
   const loadHistory = async () => {
     try {
       const historyData = await DetectionService.getHistory();
-      setHistory(historyData);
+      setHistory(historyData as any);
     } catch (error) {
       console.error('Failed to load history:', error);
     }
@@ -97,7 +97,7 @@ export default function HistoryScreen() {
 
       <View style={styles.historyContent}>
         <View style={styles.resultRow}>
-          {item.result.isCauliflower ? (
+          {item.result.isTeaselGuard ? (
             <CheckCircle size={20} color="#22C55E" strokeWidth={2} />
           ) : (
             <XCircle size={20} color="#EF4444" strokeWidth={2} />
@@ -105,10 +105,10 @@ export default function HistoryScreen() {
           <Text
             style={[
               styles.resultText,
-              { color: item.result.isCauliflower ? '#22C55E' : '#EF4444' },
+              { color: item.result.isTeaselGuard ? '#22C55E' : '#EF4444' },
             ]}
           >
-            {item.result.isCauliflower
+            {item.result.isTeaselGuard
               ? 'Teasel Guard Detected'
               : 'Not Teasel Guard'}
           </Text>
